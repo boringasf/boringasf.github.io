@@ -105,8 +105,6 @@ function notify(message) {
 
 getPermission();
 
-notify("Class timer notifications on");
-
 // run every second
 setInterval(function(){ 
 	var timeleft = get_timeleft()
