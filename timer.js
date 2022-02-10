@@ -110,6 +110,6 @@ setInterval(function(){
 	var timeleft = get_timeleft()
 	document.getElementById("timer").innerHTML = timeleft;
 	if (timeleft === "0:30") {
-		notifyMe("Class ends in 30 seconds");
+		notify("Class ends in 30 seconds");
 	}
 }, 999);
