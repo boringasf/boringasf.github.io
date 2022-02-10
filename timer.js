@@ -45,12 +45,42 @@ function get_timeleft() {
 
 	var seconds_left = Math.round((leave[1]-now)/1000);
 	var minutes_left = Math.floor(seconds_left/60);
-	var seconds_left = seconds_left%60;
+	var seconds_left = seconds_left % 60;
 
 	return minutes_left + ":" + seconds_left;
 }
 
+function notifyMe(message) {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+	var notification = new Notification(message);
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        var notification = new Notification(message);
+      }
+    });
+  }
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them any more.
+}
+
 // run every second
 setInterval(function(){ 
-	document.getElementById("timer").innerHTML = get_timeleft()
-}, 1000);
+	var timeleft = get_timeleft()
+	document.getElementById("timer").innerHTML = timeleft;
+	if (timeleft === "20:0") {
+		notifyMe("Class ends in 20 minutes");
+	}
+}, 999);
