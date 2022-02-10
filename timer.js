@@ -50,7 +50,7 @@ function get_timeleft() {
 	return minutes_left + ":" + seconds_left;
 }
 
-function notifyMe(message) {
+function getPermission() {
   // Let's check if the browser supports notifications
   if (!("Notification" in window)) {
     alert("This browser does not support desktop notification");
@@ -59,7 +59,7 @@ function notifyMe(message) {
   // Let's check whether notification permissions have already been granted
   else if (Notification.permission === "granted") {
     // If it's okay let's create a notification
-	var notification = new Notification(message);
+	  console.log("permission granted");
   }
 
   // Otherwise, we need to ask the user for permission
@@ -67,7 +67,7 @@ function notifyMe(message) {
     Notification.requestPermission().then(function (permission) {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-        var notification = new Notification(message);
+		  console.log("permission granted");
       }
     });
   }
@@ -76,13 +76,42 @@ function notifyMe(message) {
   // want to be respectful there is no need to bother them any more.
 }
 
-notifyMe("Class timer notifications on");
+
+function notify(message) {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+	  var notification = new Notification(message, { body: "Class ends in 30 seconds.", icon: "icon.png"});
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+		  var notification = new Notification(message, { body: "Class ends in 30 seconds.", icon: "icon.png"});
+      }
+    });
+  }
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them any more.
+}
+
+getPermission();
+
+notify("Class timer notifications on");
 
 // run every second
 setInterval(function(){ 
 	var timeleft = get_timeleft()
 	document.getElementById("timer").innerHTML = timeleft;
-	if (timeleft === "20:0") {
-		notifyMe("Class ends in 20 minutes");
+	if (timeleft === "0:30") {
+		notifyMe("Class ends in 30 seconds");
 	}
 }, 999);
