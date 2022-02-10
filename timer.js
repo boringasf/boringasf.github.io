@@ -76,6 +76,8 @@ function notifyMe(message) {
   // want to be respectful there is no need to bother them any more.
 }
 
+notifyMe("Class timer notifications on");
+
 // run every second
 setInterval(function(){ 
 	var timeleft = get_timeleft()
