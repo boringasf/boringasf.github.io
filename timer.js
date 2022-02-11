@@ -50,6 +50,13 @@ function get_timeleft() {
 	return minutes_left + ":" + seconds_left;
 }
 
+function time_to_may19() {
+	var now = new Date();
+	var leave = new Date(2022, 4, 19, 8, 0);
+	return parseFloat(((leave-now)/1000/60/60/24).toFixed(5));
+
+}
+
 function getPermission() {
   // Let's check if the browser supports notifications
   if (!("Notification" in window)) {
@@ -105,11 +112,14 @@ function notify(message) {
 
 getPermission();
 
+notify("Class timer notifications on");
+
 // run every second
 setInterval(function(){ 
 	var timeleft = get_timeleft()
 	document.getElementById("timer").innerHTML = timeleft;
 	if (timeleft === "0:30") {
-		notify("Class ends in 30 seconds");
+		notifyMe("Class ends in 30 seconds");
 	}
+	document.getElementById("daysleft").innerHTML = time_to_may19();
 }, 999);
