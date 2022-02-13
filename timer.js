@@ -41,6 +41,10 @@ function leave_time() {
 
 function get_timeleft() {
 	var now = new Date();
+	// if weekend
+	if (now.getDay() == 0 || now.getDay() == 6) {
+		return "weekend!";
+	}
 	var leave = leave_time();
 
 	var seconds_left = Math.round((leave[1]-now)/1000);
