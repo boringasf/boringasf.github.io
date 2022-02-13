@@ -1,13 +1,13 @@
 var schedule_normal = {
 	"Math":[8,12],
 	"Biology":[9,17],
-	"TOK":[10,14]
-	//"HOA":[11,11],
-	//"Lunch":[12,11],
-	//"Literature":[12,41],
-	//"Psychology":[13,38],
-	//"Spanish":[14,34],
-	//"Home":[15,32]
+	"TOK":[10,14],
+	"HOA":[11,11],
+	"Lunch":[12,11],
+	"Literature":[12,41],
+	"Psychology":[13,38],
+	"Spanish":[14,34],
+	"Home":[15,32]
 };
 
 var schedule_wed = {
@@ -42,9 +42,9 @@ function leave_time() {
 
 function get_timeleft() {
 	var now = new Date();
-	// if weekend
-	//if (now.getDay() == 0 || now.getDay() == 6) {
-	//	return "weekend!";
+	if (now.getDay() == 0 || now.getDay() == 6) {
+		return "weekend!";
+	}
 	var leave = leave_time();
 
 	if (leave == -1) {
