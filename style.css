@@ -16,6 +16,24 @@
     margin: auto;
 }
 
+#timerlabel {
+    width: 650pt;
+    height: 91pt;
+	font-size: 45.5pt;
+	color: black;
+	text-align: center;
+	vertical-align: middle;
+    
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    bottom: 145px;
+	margin: auto;
+}
+
 #daysleft {
     width: 325pt;
     height: 45.5pt;
